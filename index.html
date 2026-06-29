@@ -8,13 +8,109 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <main class="page">
+  <!-- Tela de Login -->
+  <div class="login-modal" id="loginModal">
+    <div class="login-container">
+      <div class="login-box">
+        <h1 class="login-title">Moreira Joguinhos</h1>
+        
+        <!-- Formulário de Login -->
+        <form id="loginForm" class="login-form">
+          <div class="form-group">
+            <label for="username">Usuário</label>
+            <input type="text" id="username" placeholder="Digite seu usuário" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="password" id="password" placeholder="Digite sua senha" required>
+          </div>
+          <button type="submit" class="login-btn">Entrar</button>
+        </form>
+
+        <div class="login-links">
+          <button id="forgotPasswordBtn" class="link-btn">Esqueceu a senha?</button>
+          <span class="separator">|</span>
+          <button id="createAccountBtn" class="link-btn">Criar Conta</button>
+        </div>
+      </div>
+
+      <!-- Formulário de Alterar Senha -->
+      <div class="change-password-box" id="changePasswordBox" style="display: none;">
+        <h2>Alterar Senha</h2>
+        <form id="changePasswordForm" class="login-form">
+          <div class="form-group">
+            <label for="userEmail">Email ou Usuário</label>
+            <input type="text" id="userEmail" placeholder="Digite seu email ou usuário" required>
+          </div>
+          <div class="form-group">
+            <label for="newPassword">Nova Senha</label>
+            <input type="password" id="newPassword" placeholder="Digite a nova senha" required>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirme a Senha</label>
+            <input type="password" id="confirmPassword" placeholder="Confirme a nova senha" required>
+          </div>
+          <button type="submit" class="login-btn">Atualizar Senha</button>
+        </form>
+        <button id="backToLoginBtn" class="link-btn">Voltar ao Login</button>
+      </div>
+
+      <!-- Formulário de Criar Conta -->
+      <div class="create-account-box" id="createAccountBox" style="display: none;">
+        <h2>Criar Conta</h2>
+        <form id="createAccountForm" class="login-form">
+          <div class="form-group">
+            <label for="newUsername">Usuário</label>
+            <input type="text" id="newUsername" placeholder="Escolha um usuário" required>
+          </div>
+          <div class="form-group">
+            <label for="newEmail">Email</label>
+            <input type="email" id="newEmail" placeholder="Digite seu email" required>
+          </div>
+          <div class="form-group">
+            <label for="createPassword">Senha</label>
+            <input type="password" id="createPassword" placeholder="Crie uma senha" required>
+          </div>
+          <div class="form-group">
+            <label for="confirmCreatePassword">Confirme a Senha</label>
+            <input type="password" id="confirmCreatePassword" placeholder="Confirme a senha" required>
+          </div>
+          <button type="submit" class="login-btn">Criar Conta</button>
+        </form>
+        <button id="backToLoginFromCreateBtn" class="link-btn">Voltar ao Login</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="page" id="mainContent" style="display: none;">
     <header class="topbar">
       <a class="brand" href="#">
         <span class="brand-mark">&starf;</span>
         <span>Moreira Joguinhos Legais!</span>
       </a>
+      <a href="https://discord.gg/8tA346wF7" class="forum-btn" target="_blank">Fórum</a>
     </header>
+    
+    <!-- Chatbot (GroqCloud configurável) -->
+    <div class="chatbot" id="chatbot">
+      <button id="chatToggle" class="chat-toggle"><img src="assets/clideo_editor_51f61a937a96420ca24046c4d8545d0e.gif" alt="Chat"></button>
+      <div class="chat-panel" id="chatPanel" aria-hidden="true">
+        <div class="chat-header">
+          <strong>Chat (GroqCloud)</strong>
+          <div class="chat-actions">
+            <button id="chatConfigBtn" title="Configurar API">⚙️</button>
+            <button id="chatCloseBtn" title="Fechar">✖</button>
+          </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages" role="log" aria-live="polite"></div>
+
+        <form id="chatForm" class="chat-form">
+          <input id="chatInput" type="text" placeholder="Escreva uma mensagem..." autocomplete="off">
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+    </div>
 
     <section class="carousel" aria-label="Carrossel de imagens dos jogos">
       <div class="carousel-track" id="carouselTrack">
@@ -156,6 +252,41 @@
             <span>Abrir &rarr;</span>
           </div>
         </a>
+      </div>
+    </section>
+
+    <!-- Carrossel de Imagens em Baixo -->
+    <section class="bottom-carousel" aria-label="Carrossel de imagens">
+      <div class="carousel-images">
+        <button class="carousel-btn prev-btn" id="prevBtn">❮</button>
+        <div class="images-track" id="imagesTrack">
+          <img src="assets/images.jfif" alt="Imagem 1">
+          <img src="assets/images (1).jfif" alt="Imagem 2">
+          <img src="assets/images (2).jfif" alt="Imagem 3">
+          <img src="assets/67e1867504cf2ce1299946dc_AD_4nXefb-cCpUIYBiGumaFfqH571KICEVW1Jr_7vGDb9Y8__o7HLkhRtQBHOSYSVlXTDc5_neIvayFutH7-FtTR5ZXrTBNW_VJo2G_WND_NnVN-qhehPchpSdkTPDr49baCZhN5zb4Exw.png" alt="Imagem 4">
+        </div>
+        <button class="carousel-btn next-btn" id="nextBtn">❯</button>
+      </div>
+    </section>
+
+    <!-- Player de Música -->
+    <section class="music-player" aria-label="Player de Música">
+      <h3>Player de Música</h3>
+      <div class="player-container">
+        <div class="player-info">
+          <span class="song-name" id="songName">Cidade de Gamers</span>
+          <audio id="audioPlayer" preload="metadata">
+            <source src="assets/City Of Gamers- 5 In 1 Lofi Hip Hop _ Lofi Jazz _ Ambient _ Vaporwave _ Synthwave Mix (4 Hours) - Shipleash (youtube).mp3" type="audio/mpeg">
+          </audio>
+        </div>
+        <div class="player-controls">
+          <button id="playBtn" class="control-btn">▶</button>
+          <button id="pauseBtn" class="control-btn">⏸</button>
+          <button id="nextSongBtn" class="control-btn">⏭</button>
+        </div>
+        <div class="progress-bar">
+          <div class="progress" id="progress"></div>
+        </div>
       </div>
     </section>
   </main>
